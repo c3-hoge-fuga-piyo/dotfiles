@@ -23,7 +23,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Go {{{
 if type go &>/dev/null; then
   export GOPATH="$XDG_DATA_HOME/go"
-  export PATH="$GOPATH/src:$PATH"
+  export PATH="$GOPATH/bin:$PATH"
 fi
 # }}}
 
