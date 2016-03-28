@@ -27,7 +27,7 @@ if type go &>/dev/null; then
 fi
 #}}}
 
-# GHQ {{{
+# ghq {{{
 if type ghq &>/dev/null; then
   export GHQ_ROOT="$XDG_DATA_HOME/ghq"
 fi
