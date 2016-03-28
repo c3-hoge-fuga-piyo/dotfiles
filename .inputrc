@@ -1,0 +1,15 @@
+$if Bash
+  set bell-style none
+  set colored-stats on
+  set completion-ignore-case on
+  set visible-stats on
+  set show-all-if-ambiguous on
+  set skip-completed-text on
+
+  set convert-meta off
+  set meta-flag on
+  set input-meta on
+  set output-meta on
+
+  space:magic-space
+$endif
