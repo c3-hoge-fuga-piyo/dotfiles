@@ -146,7 +146,7 @@ if dein#tap('neocomplete.vim')
   let g:neocomplete#enable_smart_case = 1
   let g:neocomplete#enable_camel_case = 1
   let g:neocomplete#enable_fuzzy_completion = 1
-  let g:neocomplete#enable_auto_close_preview = 1
+  let g:neocomplete#enable_auto_close_preview = 0
   let g:neocomplete#enable_auto_select = 1
   let g:neocomplete#enable_cursor_hold_i = 0
 
@@ -166,11 +166,11 @@ if dein#tap('neocomplete.vim')
 
   function! s:is_indent_requested() abort "{{{
     let l:prev = col('.') - 1
-    return l:prev <= 0 || getline('.')[l:prev - 1] =~# '\s'
+    return l:prev <= 0 || getline('.')[l:prev - 1] =~? '\s'
   endfunction "}}}
 
   " Keyboard Mapping {{{
-  inoremap <silient><expr> <TAB>
+  inoremap <expr> <TAB>
     \ pumvisible()
       \ ? "\<C-n>"
       \ : <SID>is_indent_requested()
