@@ -40,7 +40,7 @@ if type brew &>/dev/null; then
   #}}}
 
   # bash-completion {{{
-  test -f "$(brew --prefix)/etc/bash_completion" && "$_"
+  test -f "$(brew --prefix)/etc/bash_completion" && . "$_"
   #}}}
 
   # mono {{{
