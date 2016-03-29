@@ -220,7 +220,8 @@ if dein#tap('vim-watchdogs')
       \ 'type': 'watchdogs_checker/vint'}
     let g:quickrun_config['watchdogs_checker/vint'] = {
       \ 'command': 'vint',
-      \ 'exec': '%c %o %s:p'}
+      \ 'exec': '%c %o %s:p',
+      \ 'cmdopt': '--style-problem --color'}
   endif
   "}}}
 
@@ -309,7 +310,7 @@ endif
 function! s:env.colorscheme.source() abort "{{{
   " colorscheme {{{
   let l:current_name = get(g:, 'color_name', 'default')
-  let l:name = get(self, 'name', l:current_name)
+  let l:name = get(l:self, 'name', l:current_name)
 
   if l:name isnot l:current_name
     let l:colorschemes = map(
@@ -324,7 +325,7 @@ function! s:env.colorscheme.source() abort "{{{
 
   " background {{{
   let l:current_background = &background
-  let l:background = get(self, 'background', l:current_background)
+  let l:background = get(l:self, 'background', l:current_background)
 
   if l:background isnot l:current_background
     execute 'set background=' . l:background
