@@ -3,11 +3,6 @@ if type vim &>/dev/null; then
   export EDITOR=vim
 fi
 
-if type less &>/dev/null; then
-  export PAGER=less
-  export LESS='--quit-if-one-screen'
-fi
-
 # History Options {{{
 export HISTCONTROL=erasedups
 export HISTSIZE=5000
