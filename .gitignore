@@ -7,3 +7,7 @@
 !/.bash_profile
 !/.bashrc
 !/.vimrc
+
+!/.config/
+!/.config/peco/
+!/.config/peco/**
