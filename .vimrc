@@ -26,6 +26,7 @@ let s:env.platform = {}
 let s:env.platform.is_windows = has('win64') || has('win32')
 
 let s:env.path = {}
+let s:env.path.cache = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:env.path.vimfiles = expand(s:env.platform.is_windows
   \ ? '~/vimfiles'
   \ : '~/.vim')
@@ -36,7 +37,7 @@ endfunction "}}}
 "}}}
 
 " Plugins {{{
-let s:env.path.dein = s:env.path.vimfiles . '/dein'
+let s:env.path.dein = s:env.path.cache . '/dein'
 
 let s:env.dein = {
   \ 'repo': 'https://github.com/Shougo/dein.vim',
@@ -56,7 +57,7 @@ if dein#load_state(s:env.path.dein)
       \ 'build': {
         \ 'windows': 'tools\\update-dll-mingw',
         \ 'cygwin': 'make -f make_cygwin.mak',
-        \ 'mac': 'make -f make_mac.mak',
+        \ 'mac': 'make',
         \ 'linux': 'make',
         \ 'unix': 'gmake'}})
   call dein#add('Shougo/context_filetype.vim')
@@ -109,6 +110,9 @@ if dein#load_state(s:env.path.dein)
     \ 'depends': ['Shougo/vimproc.vim']})
 
   call dein#add('cohama/vim-hier')
+  call dein#add('cohama/vim-insert-linenr', {
+    \ 'lazy': 1,
+    \ 'on_i': 1})
 
   call dein#add('tpope/vim-dispatch')
 
@@ -139,49 +143,59 @@ if dein#check_install()
   call dein#install()
 endif
 
+augroup vimrc_dein-hooks
+  autocmd!
+augroup END
+
 " Shougo/neocomplete.vim {{{
 if dein#tap('neocomplete.vim')
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_ignore_case = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplete#enable_camel_case = 1
-  let g:neocomplete#enable_fuzzy_completion = 1
-  let g:neocomplete#enable_auto_close_preview = 0
-  let g:neocomplete#enable_auto_select = 1
-  let g:neocomplete#enable_cursor_hold_i = 0
 
-  let g:neocomplete#auto_completion_start_length = 2
-  let g:neocomplete#manual_completion_start_length = 0
+  function! s:neocomplete_on_source() abort
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_ignore_case = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#enable_camel_case = 1
+    let g:neocomplete#enable_fuzzy_completion = 1
+    let g:neocomplete#enable_auto_close_preview = 0
+    let g:neocomplete#enable_auto_select = 0
+    let g:neocomplete#enable_cursor_hold_i = 0
 
-  let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
-  let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
+    let g:neocomplete#auto_completion_start_length = 2
+    let g:neocomplete#manual_completion_start_length = 0
 
-  " C# {{{
-  let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+    let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
+    let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
 
-  if dein#tap('omnisharp-vim')
-    let g:neocomplete#sources#omni#functions.cs = 'OmniSharp#Complete'
-  endif
-  "}}}
+    " C# {{{
+    let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
 
-  function! s:is_indent_requested() abort "{{{
-    let l:prev = col('.') - 1
-    return l:prev <= 0 || getline('.')[l:prev - 1] =~? '\s'
-  endfunction "}}}
+    if dein#tap('omnisharp-vim')
+      let g:neocomplete#sources#omni#functions.cs = 'OmniSharp#Complete'
+    endif
+    "}}}
 
-  " Keyboard Mapping {{{
-  inoremap <expr> <TAB>
-    \ pumvisible()
-      \ ? "\<C-n>"
-      \ : <SID>is_indent_requested()
-        \ ? "<TAB>"
-        \ : neocomplete#start_manual_complete()
+    function! s:is_indent_requested() abort "{{{
+      let l:prev = col('.') - 1
+      return l:prev <= 0 || getline('.')[l:prev - 1] =~? '\s'
+    endfunction "}}}
 
-  inoremap <expr> <S-TAB>
-    \ pumvisible()
-      \ ? "\<C-p>"
-      \ : "\<C-d>"
-  "}}}
+    " Keyboard Mapping {{{
+    inoremap <expr> <TAB>
+      \ pumvisible()
+        \ ? "\<C-n>"
+        \ : <SID>is_indent_requested()
+          \ ? "<TAB>"
+          \ : neocomplete#start_manual_complete()
+
+    inoremap <expr> <S-TAB>
+      \ pumvisible()
+        \ ? "\<C-p>"
+        \ : "\<C-d>"
+    "}}}
+  endfunction
+
+  execute 'autocmd vimrc_dein-hooks User' 'dein#source#' . g:dein#name
+    \ 'call s:neocomplete_on_source()'
 endif
 "}}}
 
@@ -259,7 +273,7 @@ endif
 "}}}
 
 " File Type Options {{{
-augroup vimrc-filetype
+augroup vimrc_filetype
   autocmd!
 
   " Default Options {{{
@@ -300,14 +314,22 @@ augroup END
 
 " Color Scheme Options {{{
 let s:env.colorscheme = {
-  \ 'name': 'iceberg',
-  \ 'background': 'dark'}
+  \ 'name': 'iceberg'}
 
 if !has('gui_running')
   set t_Co=256
 endif
 
 function! s:env.colorscheme.source() abort "{{{
+  " background {{{
+  let l:current_background = &background
+  let l:background = get(l:self, 'background', l:current_background)
+
+  if l:background isnot l:current_background
+    execute 'set background=' . l:background
+  endif
+  "}}}
+
   " colorscheme {{{
   let l:current_name = get(g:, 'color_name', 'default')
   let l:name = get(l:self, 'name', l:current_name)
@@ -320,15 +342,6 @@ function! s:env.colorscheme.source() abort "{{{
     if index(l:colorschemes, l:name) >= 0
       execute 'colorscheme' l:name
     endif
-  endi
-  "}}}
-
-  " background {{{
-  let l:current_background = &background
-  let l:background = get(l:self, 'background', l:current_background)
-
-  if l:background isnot l:current_background
-    execute 'set background=' . l:background
   endif
   "}}}
 endfunction "}}}
