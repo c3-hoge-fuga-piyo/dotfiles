@@ -1,0 +1,9 @@
+*
+!.gitignore
+
+!/README.md
+
+!/.inputrc
+!/.bash_profile
+!/.bashrc
+!/.vimrc
