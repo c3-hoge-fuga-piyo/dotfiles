@@ -49,8 +49,8 @@ endif
 set runtimepath&
 execute 'set runtimepath^=' . s:env.dein.path
 
-call dein#begin(s:env.path.dein)
-if dein#load_cache()
+if dein#load_state(s:env.path.dein)
+  call dein#begin(s:env.path.dein)
   call dein#add(s:env.dein.path)
   call dein#add('Shougo/vimproc.vim', {
       \ 'build': {
@@ -129,9 +129,9 @@ if dein#load_cache()
   call dein#add('OrangeT/vim-csharp', {'lazy': 1, 'on_ft': ['cs']})
   "}}}
 
-  call dein#save_cache()
+  call dein#end()
+  call dein#save_state()
 endif
-call dein#end()
 
 filetype plugin indent on
 
@@ -273,6 +273,12 @@ augroup vimrc-filetype
       \ shiftwidth=2
       \ tabstop=2
       \ softtabstop=0
+  "}}}
+
+  " gitconfig {{{
+  autocmd FileType gitconfig
+    \ setlocal
+      \ noexpandtab
   "}}}
 
   " C# {{{
