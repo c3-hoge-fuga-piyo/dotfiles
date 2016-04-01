@@ -47,4 +47,5 @@ if type brew &>/dev/null; then
 fi
 #}}}
 
+test -f "$HOME/.bash_profile.local" && . "$_"
 test -f "$HOME/.bashrc" && . "$_"
