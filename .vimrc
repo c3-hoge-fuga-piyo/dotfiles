@@ -120,7 +120,7 @@ if dein#load_state(s:env.path.dein)
 
   call dein#add('kannokanno/previm', {
     \ 'lazy': 1,
-    \ 'on_ft': ['markdown']})
+    \ 'on_cmd': ['PrevimOpen']})
 
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
