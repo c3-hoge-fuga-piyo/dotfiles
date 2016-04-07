@@ -77,6 +77,7 @@ if dein#load_state(s:env.path.dein)
 
   call dein#add('OmniSharp/omnisharp-vim', {
     \ 'if': has('python') && executable('mono'),
+    \ 'timeout': 1200,
     \ 'lazy': 1,
     \ 'on_ft': ['cs'],
     \ 'build': {
@@ -130,7 +131,6 @@ if dein#load_state(s:env.path.dein)
   call dein#add('elzr/vim-json', {'lazy': 1, 'on_ft': ['json']})
   call dein#add('cespare/vim-toml', {'lazy': 1, 'on_ft': ['toml']})
   call dein#add('stephpy/vim-yaml', {'lazy': 1, 'on_ft': ['yaml']})
-  call dein#add('OrangeT/vim-csharp', {'lazy': 1, 'on_ft': ['cs']})
   "}}}
 
   call dein#end()
@@ -299,7 +299,6 @@ augroup vimrc_filetype
   " C# {{{
   autocmd FileType cs
     \ setlocal
-      \ foldmethod=syntax
       \ shiftwidth=4
       \ tabstop=4
   "}}}
@@ -367,6 +366,7 @@ set showmode
 
 set nobackup noswapfile noundofile
 
+set hlsearch
 set wrapscan
 set ignorecase
 set smartcase
