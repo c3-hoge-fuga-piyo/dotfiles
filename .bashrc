@@ -19,7 +19,7 @@ if type git &>/dev/null; then
       if [[ -z "$current_branch_name" ]]; then
         echo ''
       else
-        echo " (${current_branch_name})"
+        echo " ($current_branch_name)"
       fi
     }
   fi
