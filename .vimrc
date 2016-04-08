@@ -2,9 +2,9 @@
 if 0 | endif
 
 " NOTE: In some cases, Vim is started in Vi compatibility mode.
-if &compatible
-  set nocompatible
-endif
+"if &compatible
+"  set nocompatible
+"endif
 
 " Encodings {{{
 if &encoding !=? 'utf-8'
@@ -299,6 +299,7 @@ augroup vimrc_filetype
   " C# {{{
   autocmd FileType cs
     \ setlocal
+      \ foldmethod=syntax
       \ shiftwidth=4
       \ tabstop=4
   "}}}
