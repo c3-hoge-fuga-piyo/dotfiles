@@ -96,6 +96,10 @@ if dein#load_state(s:env.path.dein)
   call dein#add('thinca/vim-ft-help_fold', {
     \ 'lazy': 1,
     \ 'on_ft': ['help']})
+  call dein#add('thinca/vim-prettyprint', {
+    \ 'lazy': 1,
+    \ 'on_cmd': ['PP', 'PrettyPrint'],
+    \ 'on_func': ['PP', 'PrettyPrint']})
 
   call dein#add('osyo-manga/vim-precious', {
     \ 'depends': ['Shougo/context_filetype.vim']})
