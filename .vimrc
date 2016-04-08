@@ -2,9 +2,9 @@
 if 0 | endif
 
 " NOTE: In some cases, Vim is started in Vi compatibility mode.
-"if &compatible
+" if &compatible
 "  set nocompatible
-"endif
+" endif
 
 " Encodings {{{
 if &encoding !=? 'utf-8'
@@ -123,6 +123,8 @@ if dein#load_state(s:env.path.dein)
   call dein#add('kannokanno/previm', {
     \ 'lazy': 1,
     \ 'on_cmd': ['PrevimOpen']})
+
+  call dein#add('bronson/vim-trailing-whitespace')
 
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
@@ -265,6 +267,14 @@ if dein#tap('vim-watchdogs')
 endif
 "}}}
 
+" bronson/vim-trailing-whitespace {{{
+if dein#tap('vim-trailing-whitespace')
+  let g:extra_whitespace_ignored_filetypes = [
+    \ 'markdonw',
+    \ 'unite']
+endif
+"}}}
+
 " elzr/vim-json {{{
 if dein#tap('vim-json')
   let g:vim_json_syntax_conceal = 0
@@ -392,6 +402,7 @@ endif
 "}}}
 
 " Keyboard Mapping {{{
+let mapleader = "\<Space>"
 nnoremap Q <Nop>
 
 noremap j gj
