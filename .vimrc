@@ -118,6 +118,7 @@ if dein#load_state(s:env.path.dein)
   call dein#add('tpope/vim-dispatch')
 
   call dein#add('tyru/open-browser.vim')
+  call dein#add('tyru/caw.vim')
 
   call dein#add('kannokanno/previm', {
     \ 'lazy': 1,
@@ -149,7 +150,6 @@ augroup END
 
 " Shougo/neocomplete.vim {{{
 if dein#tap('neocomplete.vim')
-
   function! s:neocomplete_on_source() abort
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_ignore_case = 1
@@ -389,6 +389,15 @@ if has('clipboard')
     set clipboard+=unnamed
   endif
 endif
+"}}}
+
+" Keyboard Mapping {{{
+nnoremap Q <Nop>
+
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
 "}}}
 
 " NOTE: Must be after modifying 'runtimepath'.
