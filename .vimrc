@@ -2,9 +2,11 @@
 if 0 | endif
 
 " NOTE: In some cases, Vim is started in Vi compatibility mode.
-" if &compatible
-"  set nocompatible
-" endif
+if &compatible
+  " vint: -ProhibitSetNoCompatible
+ set nocompatible
+  " vint: +ProhibitSetNoCompatible
+endif
 
 " Encodings {{{
 if &encoding !=? 'utf-8'
@@ -54,12 +56,10 @@ if dein#load_state(s:env.path.dein)
   call dein#begin(s:env.path.dein)
   call dein#add(s:env.dein.path)
   call dein#add('Shougo/vimproc.vim', {
-      \ 'build': {
-        \ 'windows': 'tools\\update-dll-mingw',
-        \ 'cygwin': 'make -f make_cygwin.mak',
-        \ 'mac': 'make',
-        \ 'linux': 'make',
-        \ 'unix': 'gmake'}})
+      \ 'timeout': 1200,
+      \ 'build': s:env.platform.is_windows
+        \ ? 'tools\\update-dll-mingw'
+        \ : 'make'})
   call dein#add('Shougo/context_filetype.vim')
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/vimfiler.vim',{
@@ -80,11 +80,9 @@ if dein#load_state(s:env.path.dein)
     \ 'timeout': 1200,
     \ 'lazy': 1,
     \ 'on_ft': ['cs'],
-    \ 'build': {
-      \ 'windows': 'msbuild server/OmniSharp.sln',
-      \ 'mac': 'xbuild server/OmniSharp.sln',
-      \ 'unix': 'xbuild server/OmniSharp.sln',
-      \ 'linux': 'xbuild server/OmniSharp.sln'}})
+    \ 'build': s:env.platform.is_windows
+      \ ? 'msbuild server/OmniSharp.sln'
+      \ : 'xbuild server/OmniSharp.sln'})
 
   call dein#add('itchyny/lightline.vim')
 
