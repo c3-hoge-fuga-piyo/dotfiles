@@ -274,7 +274,7 @@ endif
 " bronson/vim-trailing-whitespace {{{
 if dein#tap('vim-trailing-whitespace')
   let g:extra_whitespace_ignored_filetypes = [
-    \ 'markdonw',
+    \ 'markdown',
     \ 'unite']
 endif
 "}}}
