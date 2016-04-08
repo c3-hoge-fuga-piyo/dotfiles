@@ -1,4 +1,4 @@
-# Bash Options {{{
+# Bash {{{
 if type vim &>/dev/null; then
   export EDITOR=vim
 fi
@@ -32,20 +32,25 @@ fi
 # Homebrew {{{
 if type brew &>/dev/null; then
   # Homebrew Options {{{
+  # shellcheck source=/dev/null
   test -f "$HOME/.homebrew_github_api_token" && . "$_"
   #}}}
 
   # bash-completion {{{
+  # shellcheck source=/dev/null
   test -f "$(brew --prefix)/etc/bash_completion" && . "$_"
   #}}}
 
   # mono {{{
   if [[ "$(brew --prefix mono)" ]]; then
-    export MONO_GAC_PREFIX="$(brew --prefix)"
+    export MONO_GAC_PREFIX
+    MONO_GAC_PREFIX="$(brew --prefix)"
   fi
   #}}}
 fi
 #}}}
 
+# shellcheck source=/dev/null
 test -f "$HOME/.bash_profile.local" && . "$_"
+# shellcheck source=/dev/null
 test -f "$HOME/.bashrc" && . "$_"
