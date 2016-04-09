@@ -73,7 +73,8 @@ if dein#load_state(s:env.path.dein)
 
   call dein#add('wakatime/vim-wakatime')
 
-  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('editorconfig/editorconfig-vim',
+    \ 'if': has('python'))
 
   call dein#add('OmniSharp/omnisharp-vim', {
     \ 'if': has('python') && executable('mono'),
