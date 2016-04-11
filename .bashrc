@@ -31,6 +31,7 @@ if type git &>/dev/null; then
   alias ga='g add'
   alias gb='g branch --verbose'
   alias gc='g commit --verbose'
+  alias gcd='cd "$(g rev-parse --show-toplevel)"'
   alias gco='g checkout'
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
