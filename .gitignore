@@ -10,4 +10,6 @@
 
 !/.config/
 !/.config/peco/
-!/.config/peco/**
+!/.config/peco/config.json
+!/.config/git/
+!/.config/git/config

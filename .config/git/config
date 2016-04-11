@@ -1,0 +1,9 @@
+[include]
+	path = config.local
+[core]
+	editor = vim
+	excludesfile = ignore
+[color]
+	ui = auto
+[credential]
+	helper = cache
