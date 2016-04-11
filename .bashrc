@@ -31,11 +31,11 @@ if type git &>/dev/null; then
   alias ga='g add'
   alias gb='g branch --verbose'
   alias gc='g commit --verbose'
+  alias gco='g checkout'
   alias gd='g diff --ignore-space-change'
   alias gdc='gd --cached'
   alias gdw='gd --word-diff-regex="\w+"'
   alias gdwc='gdw --cached'
-  alias gco='g checkout'
   alias gl='g log --graph --decorate --oneline'
   alias gp='g push'
   alias gs='g status --short --branch'
@@ -43,6 +43,19 @@ if type git &>/dev/null; then
   # Autocompletion with aliases
   if type __git_complete &>/dev/null; then
     type __git_main &>/dev/null && __git_complete g __git_main
+    type _git_add &>/dev/null && __git_complete ga _git_add
+    type _git_branch &>/dev/null && __git_complete gb _git_add
+    type _git_commit &>/dev/null && __git_complete gc _git_commit
+    type _git_checkout &>/dev/null && __git_complete gco _git_checkout
+    if type _git_diff &>/dev/null; then
+      __git_complete gd _git_diff
+      __git_complete gdc _git_diff
+      __git_complete gdw _git_diff
+      __git_complete gdwc _git_diff
+    fi
+    type _git_log &>/dev/null && __git_complete gl _git_log
+    type _git_push &>/dev/null && __git_complete gp _git_push
+    type _git_status &>/dev/null && __git_complete gs _git_status
   fi
   #}}}
 fi
