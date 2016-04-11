@@ -11,7 +11,9 @@ if type git &>/dev/null; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
     export GIT_PS1_SHOWUNTRACKEDFILES=1
-    export GIT_PS1_SHOWUPSTREAM=1
+    export GIT_PS1_SHOWUPSTREAM=auto
+    export GIT_PS1_DESCRIBE_STYLE=default
+    export GIT_PS1_SHOWCOLORHINTS=
   else
     function __git_ps1() {
       local current_branch_name
