@@ -37,6 +37,7 @@ if type git &>/dev/null; then
   alias gdwc='gdw --cached'
   alias gco='g checkout'
   alias gl='g log --graph --decorate --oneline'
+  alias gp='g push'
   alias gs='g status --short --branch'
 
   # Autocompletion with aliases
