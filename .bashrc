@@ -28,6 +28,16 @@ if type git &>/dev/null; then
 
   # Aliases {{{
   alias g='git'
+  alias ga='g add'
+  alias gb='g branch --verbose'
+  alias gc='g commit --verbose'
+  alias gd='g diff --ignore-space-change'
+  alias gdc='gd --cached'
+  alias gdw='gd --word-diff-regex="\w+"'
+  alias gdwc='gdw --cached'
+  alias gco='g checkout'
+  alias gl='g log --graph --decorate --oneline'
+  alias gs='g status --short --branch'
 
   # Autocompletion with aliases
   if type __git_complete &>/dev/null; then
