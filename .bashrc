@@ -1,12 +1,12 @@
 # If not running interactively, don't do anything.
 [[ "$-" != *i* ]] && return
 
-# Prompt {{{
 # Git {{{
 show_current_git_branch='true'
-if type git &>/dev/null; then
-  show_current_git_branch='__git_ps1'
 
+if type git &>/dev/null; then
+
+  show_current_git_branch='__git_ps1'
   if type __git_ps1 &>/dev/null; then
     export GIT_PS1_SHOWDIRTYSTATE=1
     export GIT_PS1_SHOWSTASHSTATE=1
@@ -25,17 +25,32 @@ if type git &>/dev/null; then
       fi
     }
   fi
-fi
-#}}}
 
-export PS1
-PS1='\[\e[0;36m\][\D{%FT%T}] \[\e[0;32m\]\W\[\e[0;33m\]$(${show_current_git_branch})\n\[\e[0;32m\]\$ \[\e[0m\]'
+  # Aliases {{{
+  alias g='git'
+
+  # Autocompletion with aliases
+  if type __git_complete &>/dev/null; then
+    type __git_main &>/dev/null && __git_complete g __git_main
+  fi
+  #}}}
+fi
 #}}}
 
 # direnv {{{
 if type direnv &>/dev/null; then
   eval "$(direnv hook bash)"
 fi
+#}}}
+
+# Prompt {{{
+export PS1
+
+# Example
+#
+# [1970-01-01T00:00:00] ~ (master)
+# $ _
+PS1='\[\e[0;36m\][\D{%FT%T}] \[\e[0;32m\]\W\[\e[0;33m\]$($show_current_git_branch)\n\[\e[0;32m\]\$ \[\e[0m\]'
 #}}}
 
 # shellcheck source=/dev/null
