@@ -3,6 +3,8 @@
 [core]
 	editor = vim
 	excludesfile = ignore
+[diff]
+	algorithm = histogram
 [color]
 	ui = auto
 [credential]
