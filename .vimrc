@@ -371,12 +371,19 @@ set ruler
 set nowrap
 set cursorline
 set scrolloff=8
+set sidescrolloff=16
 set backspace=indent,eol,start
+set whichwrap=b,s,<,>,~,[,]
 set laststatus=2
 set showcmd
 set wildmenu
+set wildignorecase
+set wildmode=list:full
 set showmatch
 set showmode
+set virtualedit=block
+set splitbelow splitright
+set autoread
 
 set nobackup noswapfile noundofile
 
@@ -384,6 +391,7 @@ set hlsearch
 set wrapscan
 set ignorecase
 set smartcase
+set incsearch
 
 set list listchars=
   \eol:¶,
@@ -405,8 +413,11 @@ endif
 "}}}
 
 " Keyboard Mapping {{{
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 nnoremap Q <Nop>
+
+noremap ; :
+noremap : ;
 
 noremap j gj
 noremap gj j
