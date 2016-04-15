@@ -427,7 +427,6 @@ set showmode
 set virtualedit=block
 set splitbelow splitright
 set autoread
-set mouse=a
 
 set nobackup noswapfile noundofile
 
