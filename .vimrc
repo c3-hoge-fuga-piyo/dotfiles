@@ -28,7 +28,9 @@ let s:env.platform = {}
 let s:env.platform.is_windows = has('win64') || has('win32')
 
 let s:env.path = {}
-let s:env.path.cache = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
+let s:env.path.cache = empty($XDG_CACHE_HOME)
+  \ ? expand('~/.cache')
+  \ : $XDG_CACHE_HOME
 let s:env.path.vimfiles = expand(s:env.platform.is_windows
   \ ? '~/vimfiles'
   \ : '~/.vim')
@@ -109,6 +111,7 @@ if dein#load_state(s:env.path.dein)
       \ 'Shougo/vimproc.vim',
       \ 'thinca/vim-quickrun',
       \ 'osyo-manga/shabadou.vim']})
+  call dein#add('osyo-manga/vim-anzu')
 
   call dein#add('cohama/vim-hier')
   call dein#add('cohama/vim-insert-linenr', {
@@ -292,12 +295,25 @@ if dein#tap('incsearch.vim')
   map ? <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
 
-  map n <Plug>(incsearch-nohl-n)
-  map N <Plug>(incsearch-nohl-N)
-  map * <Plug>(incsearch-nohl-*)
-  map # <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
+  if dein#tap('vim-anzu')
+    nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+    nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+    nmap * <plug>(incsearch-nohl)<Plug>(anzu-star-with-echo)
+    nmap # <plug>(incsearch-nohl)<Plug>(anzu-sharp-with-echo)
+
+    vmap n <plug>(incsearch-nohl-n)
+    vmap N <plug>(incsearch-nohl-N)
+    vmap * <plug>(incsearch-nohl-*)
+    vmap # <plug>(incsearch-nohl-#)
+  else
+    map n <plug>(incsearch-nohl-n)
+    map N <plug>(incsearch-nohl-N)
+    map * <plug>(incsearch-nohl-*)
+    map # <plug>(incsearch-nohl-#)
+  endif
+
+  map g* <plug>(incsearch-nohl-g*)
+  map g# <plug>(incsearch-nohl-g#)
   "}}}
 endif
 
