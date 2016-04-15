@@ -109,9 +109,6 @@ if dein#load_state(s:env.path.dein)
       \ 'Shougo/vimproc.vim',
       \ 'thinca/vim-quickrun',
       \ 'osyo-manga/shabadou.vim']})
-  call dein#add('osyo-manga/vim-vigemo', {
-    \ 'if': executable('cmigemo'),
-    \ 'depends': ['Shougo/vimproc.vim']})
 
   call dein#add('cohama/vim-hier')
   call dein#add('cohama/vim-insert-linenr', {
@@ -128,6 +125,15 @@ if dein#load_state(s:env.path.dein)
     \ 'on_cmd': ['PrevimOpen']})
 
   call dein#add('bronson/vim-trailing-whitespace')
+
+  call dein#add('haya14busa/incsearch.vim')
+  call dein#add('haya14busa/incsearch-fuzzy.vim', {
+    \ 'depends': ['haya14busa/incsearch.vim']})
+  call dein#add('haya14busa/incsearch-migemo.vim', {
+    \ 'if': executable('cmigemo'),
+    \ 'depends': [
+      \ 'haya14busa/incsearch.vim',
+      \ 'Shougo/vimproc.vim']})
 
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
@@ -278,6 +284,43 @@ if dein#tap('vim-trailing-whitespace')
 endif
 "}}}
 
+" haya14busa/incsearch.vim {{{
+if dein#tap('incsearch.vim')
+  let g:incsearch#auto_nohlsearch = 1
+  " Keyboard Mapping {{{
+  map / <Plug>(incsearch-forward)
+  map ? <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+
+  map n <Plug>(incsearch-nohl-n)
+  map N <Plug>(incsearch-nohl-N)
+  map * <Plug>(incsearch-nohl-*)
+  map # <Plug>(incsearch-nohl-#)
+  map g* <Plug>(incsearch-nohl-g*)
+  map g# <Plug>(incsearch-nohl-g#)
+  "}}}
+endif
+
+" haya14busa/incsearch-fuzzy.vim {{{
+if dein#tap('incsearch-fuzzy.vim')
+  " Keyboard Mapping {{{
+  map z/ <Plug>(incsearch-fuzzy-/)
+  map z? <Plug>(incsearch-fuzzy-?)
+  map zg/ <Plug>(incsearch-fuzzy-stay)
+  "}}}
+endif
+"}}}
+" haya14busa/incsearch-migemo.vim {{{
+if dein#tap('incsearch-migemo.vim')
+  " Keyboard Mapping {{{
+  map m/ <Plug>(incsearch-migemo-/)
+  map m? <Plug>(incsearch-migemo-?)
+  map mg/ <Plug>(incsearch-migemo-stay)
+  "}}}
+endif
+"}}}
+"}}}
+
 " elzr/vim-json {{{
 if dein#tap('vim-json')
   let g:vim_json_syntax_conceal = 0
@@ -384,6 +427,7 @@ set showmode
 set virtualedit=block
 set splitbelow splitright
 set autoread
+set mouse=a
 
 set nobackup noswapfile noundofile
 
