@@ -456,7 +456,6 @@ set list listchars=
   \eol:¶,
   \tab:▸\ ,
   \space:·,
-  \trail:-,
   \extends:>,
   \precedes:<
 
