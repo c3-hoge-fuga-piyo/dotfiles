@@ -143,9 +143,10 @@ if dein#load_state(s:env.path.dein)
   "}}}
 
   " Syntacies {{{
-  call dein#add('elzr/vim-json', {'lazy': 1, 'on_ft': ['json']})
-  call dein#add('cespare/vim-toml', {'lazy': 1, 'on_ft': ['toml']})
-  call dein#add('stephpy/vim-yaml', {'lazy': 1, 'on_ft': ['yaml']})
+  call dein#add('elzr/vim-json')
+  call dein#add('cespare/vim-toml')
+  call dein#add('stephpy/vim-yaml')
+  call dein#add('vim-scripts/ShaderHighLight')
   "}}}
 
   call dein#end()
