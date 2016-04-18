@@ -138,6 +138,8 @@ if dein#load_state(s:env.path.dein)
       \ 'haya14busa/incsearch.vim',
       \ 'Shougo/vimproc.vim']})
 
+  call dein#add('sgur/vim-lazygutter')
+
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
   "}}}
