@@ -452,7 +452,7 @@ set laststatus=2
 set showcmd
 set wildmenu
 set wildignorecase
-set wildmode=list:full
+set wildmode=longest:full,full
 set showmatch
 set showmode
 set virtualedit=block
