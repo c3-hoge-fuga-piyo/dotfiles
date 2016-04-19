@@ -137,6 +137,13 @@ if dein#load_state(s:env.path.dein)
 
   call dein#add('mhinz/vim-signify')
 
+  call dein#add('koron/codic-vim')
+
+  call dein#add('rhysd/unite-codic.vim', {
+    \ 'depends': [
+      \ 'Shougo/unite.vim',
+      \ 'koron/codic-vim']})
+
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
   "}}}
