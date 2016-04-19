@@ -31,9 +31,6 @@ let s:env.path = {}
 let s:env.path.cache = empty($XDG_CACHE_HOME)
   \ ? expand('~/.cache')
   \ : $XDG_CACHE_HOME
-let s:env.path.vimfiles = expand(s:env.platform.is_windows
-  \ ? '~/vimfiles'
-  \ : '~/.vim')
 
 function! g:Environment() abort "{{{
   return s:env
