@@ -67,6 +67,9 @@ if dein#load_state(s:env.path.dein)
     \ 'if': has('lua'),
     \ 'lazy': 1,
     \ 'on_i': 1})
+  call dein#add('Shougo/unite-outline', {
+    \ 'depends': [
+      \ 'Shougo/unite.vim']})
 
   call dein#add('vim-jp/vimdoc-ja')
 
@@ -217,6 +220,11 @@ if dein#tap('neocomplete.vim')
 
   execute 'autocmd vimrc_dein-hooks User' 'dein#source#' . g:dein#name
     \ 'call s:neocomplete_on_source()'
+endif
+"}}}
+
+" Shougo/unite.vim {{{
+if dein#tap('unite.vim')
 endif
 "}}}
 
