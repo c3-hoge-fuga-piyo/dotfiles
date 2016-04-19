@@ -2,7 +2,6 @@
 	path = config.local
 [core]
 	editor = vim
-	excludesfile = ignore
 [push]
 	default = simple
 [diff]
