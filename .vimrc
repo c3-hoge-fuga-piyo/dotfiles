@@ -24,9 +24,6 @@ set fileformats=unix,dos,mac
 " Environment Variables {{{
 let s:env = {}
 
-let s:env.platform = {}
-let s:env.platform.is_windows = has('win64') || has('win32')
-
 let s:env.path = {}
 let s:env.path.cache = empty($XDG_CACHE_HOME)
   \ ? expand('~/.cache')
@@ -56,7 +53,7 @@ if dein#load_state(s:env.path.dein)
   call dein#add(s:env.dein.path)
   call dein#add('Shougo/vimproc.vim', {
       \ 'timeout': 1200,
-      \ 'build': s:env.platform.is_windows
+      \ 'build': dein#util#_is_windows()
         \ ? 'tools\\update-dll-mingw'
         \ : 'make'})
   call dein#add('Shougo/context_filetype.vim')
@@ -83,7 +80,7 @@ if dein#load_state(s:env.path.dein)
     \ 'timeout': 1200,
     \ 'lazy': 1,
     \ 'on_ft': ['cs'],
-    \ 'build': s:env.platform.is_windows
+    \ 'build': dein#util#_is_windows()
       \ ? 'msbuild server/OmniSharp.sln'
       \ : 'xbuild server/OmniSharp.sln'})
 
@@ -502,5 +499,23 @@ noremap gk k
 if !exists('g:syntax_on')
   syntax enable
 endif
+
+" Reloadable $MYVIMRC & $MYGVIMRC {{{
+if has('vim_starting')
+  function! s:reload_vimrc() abort
+    if filereadable($MYVIMRC) | source $MYVIMRC | endif
+
+    if has('gui_running')
+      if filereadable($MYGVIMRC) | source $MYGVIMRC | endif
+    endif
+
+    redraw
+  endfunction
+endif
+
+" Keyboard Mapping {{{
+nmap <Leader><Leader>r <Plug>(reloadable-vimrc)
+nnoremap <silent><Plug>(reloadable-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
+"}}}
 
 " vim: foldmethod=marker
