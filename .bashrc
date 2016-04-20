@@ -1,6 +1,10 @@
 # If not running interactively, don't do anything.
 [[ "$-" != *i* ]] && return
 
+# Bash {{{
+shopt -s no_empty_cmd_completion
+#}}}
+
 # Git {{{
 show_current_git_branch='true'
 
