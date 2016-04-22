@@ -40,7 +40,9 @@ if type git &>/dev/null; then
   alias gco='g checkout'
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
+  alias gf='g fetch'
   alias gl='g log --graph --decorate --oneline'
+  alias gm='g merge'
   alias gp='g push'
   alias gpuo='gp -u origin'
   alias gs='g status --short --branch'
@@ -58,7 +60,9 @@ if type git &>/dev/null; then
       __git_complete gdw _git_diff
       __git_complete gdwc _git_diff
     fi
+    type _git_fetch &>/dev/null && __git_complete gf _git_fetch
     type _git_log &>/dev/null && __git_complete gl _git_log
+    type _git_merge &>/dev/null && __git_complete gm _git_merge
     if type _git_push &>/dev/null; then
       __git_complete gp _git_push
       __git_complete gpuo _git_push
