@@ -215,8 +215,7 @@ if dein#tap('neocomplete.vim')
     "}}}
   endfunction
 
-  execute 'autocmd vimrc_dein-hooks User' 'dein#source#' . g:dein#name
-    \ 'call s:neocomplete_on_source()'
+  call dein#set_hook(g:dein#name, 'hook_source', function('s:neocomplete_on_source'))
 endif
 "}}}
 
