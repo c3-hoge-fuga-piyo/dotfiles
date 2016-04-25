@@ -84,6 +84,11 @@ if dein#load_state(s:env.path.dein)
       \ ? 'msbuild server/OmniSharp.sln'
       \ : 'xbuild server/OmniSharp.sln'})
 
+  call dein#add('justmao945/vim-clang', {
+    \ 'if' : executable('clang'),
+    \ 'lazy': 1,
+    \ 'on_ft': ['cpp']})
+
   call dein#add('itchyny/lightline.vim')
 
   call dein#add('popkirby/lightline-iceberg', {
@@ -144,6 +149,8 @@ if dein#load_state(s:env.path.dein)
       \ 'Shougo/unite.vim',
       \ 'koron/codic-vim']})
 
+  call dein#add('t9md/vim-quickhl')
+
   " Color Schemes {{{
   call dein#add('cocopon/iceberg.vim')
   "}}}
@@ -153,6 +160,7 @@ if dein#load_state(s:env.path.dein)
   call dein#add('cespare/vim-toml')
   call dein#add('stephpy/vim-yaml')
   call dein#add('vim-scripts/ShaderHighLight')
+  call dein#add('Mizuchi/STL-Syntax')
   "}}}
 
   call dein#end()
@@ -186,6 +194,16 @@ if dein#tap('neocomplete.vim')
 
     let g:neocomplete#sources#omni#input_patterns = get(g:, 'neocomplete#sources#omni#input_patterns', {})
     let g:neocomplete#sources#omni#functions = get(g:, 'neocomplete#sources#omni#functions', {})
+
+    let g:neocomplete#force_omni_input_patterns = get(g:, 'neocomplete#force_omni_input_patterns', {})
+    let g:neocomplete#force_overwrite_completefunc = 1
+
+    " C/C++ {{{
+    if dein#tap('vim-clang')
+      let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+      let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+    endif
+    "}}}
 
     " C# {{{
     let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
@@ -221,6 +239,19 @@ endif
 
 " Shougo/unite.vim {{{
 if dein#tap('unite.vim')
+endif
+"}}}
+
+" justmao945/vim-clang {{{
+if dein#tap('vim-clang')
+  function! s:vim_clang_on_source() abort
+    let g:clang_auto = 0
+
+    let g:clang_c_completeopt = 'menuone'
+    let g:clang_cpp_completeopt = 'menuone'
+    let g:clang_c_options = '--std=c11'
+    let g:clang_cpp_options = '-std=c++1z -stdlib=libc++ --pedantic-errors'
+  endfunction
 endif
 "}}}
 
@@ -346,6 +377,17 @@ if dein#tap('incsearch-migemo.vim')
   "}}}
 endif
 "}}}
+"}}}
+
+" t9md/vim-quickhl {{{
+if dein#tap('vim-quickhl')
+  " Keyboard Mapping {{{
+  nmap <Leader>m <Plug>(quickhl-manual-this)
+  xmap <Leader>m <Plug>(quickhl-manual-this)
+  nmap <Leader>M <Plug>(quickhl-manual-reset)
+  xmap <Leader>M <Plug>(quickhl-manual-reset)
+  "}}}
+endif
 "}}}
 
 " elzr/vim-json {{{
