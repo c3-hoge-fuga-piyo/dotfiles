@@ -516,5 +516,6 @@ endif
 nmap <Leader><Leader>r <Plug>(reloadable-vimrc)
 nnoremap <silent><Plug>(reloadable-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
 "}}}
+"}}}
 
 " vim: foldmethod=marker
