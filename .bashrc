@@ -41,6 +41,7 @@ if type git &>/dev/null; then
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
   alias gf='g fetch'
+  alias gfp='gf --prune'
   alias gl='g log --graph --decorate --oneline'
   alias gm='g merge'
   alias gp='g push'
@@ -60,7 +61,10 @@ if type git &>/dev/null; then
       __git_complete gdw _git_diff
       __git_complete gdwc _git_diff
     fi
-    type _git_fetch &>/dev/null && __git_complete gf _git_fetch
+    if type _git_fetch &>/dev/null; then
+      __git_complete gf _git_fetch
+      __git_complete gfp _git_fetch
+    fi
     type _git_log &>/dev/null && __git_complete gl _git_log
     type _git_merge &>/dev/null && __git_complete gm _git_merge
     if type _git_push &>/dev/null; then
