@@ -3,6 +3,25 @@
 
 # Bash {{{
 shopt -s no_empty_cmd_completion
+
+# History Options {{{
+export HISTCONTROL=erasedups
+export HISTSIZE=5000
+export HISTFILESIZE=5000
+
+# History Sharing
+shopt -u histappend
+export PROMPT_COMMAND_SYNC_HISTORY='history -a; history -c; history -r'
+#}}}
+#}}}
+
+# Homebrew {{{
+if type brew &>/dev/null; then
+  # bash-completion {{{
+  # shellcheck source=/dev/null
+  test -f "$(brew --prefix)/etc/bash_completion" && . "$_"
+  #}}}
+fi
 #}}}
 
 # Git {{{
@@ -84,13 +103,26 @@ fi
 #}}}
 
 # Prompt {{{
-export PS1
-
+# $PS1 {{{
 # Example
 #
 # [1970-01-01T00:00:00] ~ (master)
 # $ _
-PS1='\[\e[0;36m\][\D{%FT%T}] \[\e[0;32m\]\W\[\e[0;33m\]$($show_current_git_branch)\n\[\e[0;32m\]\$ \[\e[0m\]'
+export PS1='\[\e[0;36m\][\D{%FT%T}] \[\e[0;32m\]\W\[\e[0;33m\]$($show_current_git_branch)\n\[\e[0;32m\]\$ \[\e[0m\]'
+#}}}
+
+# $PROMPT_COMMAND {{{
+function __eval_prompt_commands {
+  export EXIT_STATUS="$?"
+
+  local prompt_command
+  for prompt_command in ${!PROMPT_COMMAND_*}; do
+    eval "${!prompt_command}"
+  done
+}
+
+export PROMPT_COMMAND='__eval_prompt_commands'
+#}}}
 #}}}
 
 # shellcheck source=/dev/null

@@ -2,12 +2,6 @@
 if type vim &>/dev/null; then
   export EDITOR=vim
 fi
-
-# History Options {{{
-export HISTCONTROL=erasedups
-export HISTSIZE=5000
-export HISTFILESIZE=5000
-#}}}
 #}}}
 
 # XDG Base Directory Specification {{{
@@ -36,11 +30,6 @@ if type brew &>/dev/null; then
   test -f "$HOME/.homebrew_github_api_token" && . "$_"
 
   export HOMEBREW_NO_ANALYTICS=1
-  #}}}
-
-  # bash-completion {{{
-  # shellcheck source=/dev/null
-  test -f "$(brew --prefix)/etc/bash_completion" && . "$_"
   #}}}
 
   # mono {{{
