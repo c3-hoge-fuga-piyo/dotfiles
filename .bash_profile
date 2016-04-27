@@ -34,6 +34,8 @@ if type brew &>/dev/null; then
   # Homebrew Options {{{
   # shellcheck source=/dev/null
   test -f "$HOME/.homebrew_github_api_token" && . "$_"
+
+  export HOMEBREW_NO_ANALYTICS=1
   #}}}
 
   # bash-completion {{{
