@@ -57,6 +57,7 @@ if type git &>/dev/null; then
   alias gcm='gc -m'
   alias gcd='cd "$(g rev-parse --show-toplevel)"'
   alias gco='g checkout'
+  alias gcob='gco -b'
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
   alias gf='g fetch'
@@ -73,7 +74,10 @@ if type git &>/dev/null; then
     type _git_add &>/dev/null && __git_complete ga _git_add
     type _git_branch &>/dev/null && __git_complete gb _git_add
     type _git_commit &>/dev/null && __git_complete gc _git_commit
-    type _git_checkout &>/dev/null && __git_complete gco _git_checkout
+    if type _git_checkout &>/dev/null; then
+      __git_complete gco _git_checkout
+      __git_complete gcob _git_checkout
+    fi
     if type _git_diff &>/dev/null; then
       __git_complete gd _git_diff
       __git_complete gdc _git_diff
