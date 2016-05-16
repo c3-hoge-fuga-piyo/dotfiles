@@ -317,6 +317,13 @@ if dein#tap('vim-watchdogs')
   endif
   "}}}
 
+  " Markdown {{{
+  if executable('textlint')
+    let g:quickrun_config['markdown/watchdogs_checker'] = {
+      \ 'type': 'watchdogs_checker/textlint'}
+  endif
+  "}}}
+
   call watchdogs#setup(g:quickrun_config)
 endif
 "}}}
