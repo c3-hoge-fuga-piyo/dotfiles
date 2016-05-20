@@ -242,6 +242,18 @@ if dein#tap('unite.vim')
 endif
 "}}}
 
+" OmniSharp/omnisharp-vim {{{
+if dein#tap('omnisharp-vim')
+  function! s:omnisharp_on_source() abort
+    if dein#tap('unite.vim')
+      let g:OmniSharp_selector_ui = 'unite'
+    endif
+  endfunction
+
+  call dein#set_hook(g:dein#name, 'hook_source', function('s:omnisharp_on_source'))
+endif
+"}}}
+
 " justmao945/vim-clang {{{
 if dein#tap('vim-clang')
   function! s:vim_clang_on_source() abort
@@ -426,6 +438,14 @@ augroup vimrc_filetype
   autocmd FileType gitconfig
     \ setlocal
       \ noexpandtab
+  "}}}
+
+  " C/C++ {{{
+  autocmd FileType c,cpp
+    \ setlocal
+      \ foldmethod=syntax
+      \ shiftwidth=4
+      \ tabstop=4
   "}}}
 
   " C# {{{
