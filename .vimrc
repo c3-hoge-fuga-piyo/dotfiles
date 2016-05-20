@@ -247,6 +247,13 @@ if dein#tap('omnisharp-vim')
   function! s:omnisharp_on_source() abort
     if dein#tap('unite.vim')
       let g:OmniSharp_selector_ui = 'unite'
+
+      nnoremap <leader>gd :OmniSharpGotoDefinition<CR>
+      nnoremap <leader>fi :OmniSharpFindImplementations<CR>
+      nnoremap <leader>ft :OmniSharpFindType<CR>
+      nnoremap <leader>fs :OmniSharpFindSymbol<CR>
+      nnoremap <leader>fu :OmniSharpFindUsages<CR>
+      nnoremap <leader>fm :OmniSharpFindMembers<CR>
     endif
   endfunction
 
