@@ -67,6 +67,7 @@ if type git &>/dev/null; then
   alias gp='g push'
   alias gpuo='gp -u origin'
   alias gs='g status --short --branch'
+  alias grpo='g remote prune origin'
 
   # Autocompletion with aliases
   if type __git_complete &>/dev/null; then
@@ -95,6 +96,9 @@ if type git &>/dev/null; then
       __git_complete gpuo _git_push
     fi
     type _git_status &>/dev/null && __git_complete gs _git_status
+    if type _git_remote &>/dev/null; then
+      __git_complete grpo _git_remote
+    fi
   fi
   #}}}
 fi
