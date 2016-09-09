@@ -1,7 +1,2 @@
 {
-  "CustomFilter": {
-    "Migemo": {
-      "Cmd": "migemogrep"
-    }
-  }
 }
