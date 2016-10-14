@@ -67,6 +67,12 @@ if dein#load_state(s:env.path.dein)
   call dein#add('Shougo/unite-outline', {
     \ 'depends': [
       \ 'Shougo/unite.vim']})
+  call dein#add('Shougo/neosnippet.vim', {
+    \ 'lazy': 1,
+    \ 'on_i':1 })
+  call dein#add('Shougo/neosnippet-snippets', {
+    \ 'depends': [
+      \ 'Shougo/neosnippet.vim']})
 
   call dein#add('vim-jp/vimdoc-ja')
 
