@@ -68,6 +68,9 @@ if type git &>/dev/null; then
   alias gpuo='gp -u origin'
   alias gs='g status --short --branch'
   alias grpo='g remote prune origin'
+  alias gwt='g worktree'
+  alias gwta='gwt add'
+  alias gwtp='gwt prune'
 
   # Autocompletion with aliases
   if type __git_complete &>/dev/null; then
@@ -98,6 +101,11 @@ if type git &>/dev/null; then
     type _git_status &>/dev/null && __git_complete gs _git_status
     if type _git_remote &>/dev/null; then
       __git_complete grpo _git_remote
+    fi
+    if type _git_worktree &>/dev/null; then
+      __git_complete gwt _git_worktree
+      __git_complete gwta _git_worktree
+      __git_complete gwtp _git_worktree
     fi
   fi
   #}}}
