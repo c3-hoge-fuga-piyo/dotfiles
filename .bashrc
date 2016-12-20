@@ -57,6 +57,7 @@ if type git &>/dev/null; then
   alias gcm='gc -m'
   alias gcd='cd "$(g rev-parse --show-toplevel)"'
   alias gco='g checkout'
+  alias gcom='gco master'
   alias gcob='gco -b'
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
@@ -64,6 +65,7 @@ if type git &>/dev/null; then
   alias gfp='gf --prune'
   alias gl='g log --graph --decorate --oneline'
   alias gm='g merge'
+  alias gmm='gm master'
   alias gp='g push'
   alias gpuo='gp -u origin'
   alias gs='g status --short --branch'
@@ -80,6 +82,7 @@ if type git &>/dev/null; then
     type _git_commit &>/dev/null && __git_complete gc _git_commit
     if type _git_checkout &>/dev/null; then
       __git_complete gco _git_checkout
+      __git_complete gcom _git_checkout
       __git_complete gcob _git_checkout
     fi
     if type _git_diff &>/dev/null; then
@@ -93,7 +96,10 @@ if type git &>/dev/null; then
       __git_complete gfp _git_fetch
     fi
     type _git_log &>/dev/null && __git_complete gl _git_log
-    type _git_merge &>/dev/null && __git_complete gm _git_merge
+    if type _git_merge &>/dev/null; then
+      __git_complete gm _git_merge
+      __git_complete gmm _git_merge
+    fi
     if type _git_push &>/dev/null; then
       __git_complete gp _git_push
       __git_complete gpuo _git_push
