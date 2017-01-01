@@ -154,6 +154,9 @@ if dein#load_state(s:env.path.dein)
     \ 'depends': [
       \ 'Shougo/unite.vim',
       \ 'koron/codic-vim']})
+  call dein#add('rhysd/github-complete.vim', {
+    \ 'lazy': 1,
+    \ 'on_ft': ['markdown', 'gitcommit']})
 
   call dein#add('t9md/vim-quickhl')
 
@@ -421,6 +424,17 @@ if dein#tap('vim-quickhl')
   "}}}
 endif
 "}}}
+
+" rhysd/github-complete.vim {{{
+if dein#tap('github-complete.vim')
+  let g:github_complete_enable_neocomplete = 1
+  let g:github_complete_enable_emoji_completion = 1
+  let g:github_complete_enable_issue_completion = 0
+  let g:github_complete_enable_user_completion = 0
+  let g:github_complete_enable_repo_completion = 0
+endif
+"}}}
+
 
 " elzr/vim-json {{{
 if dein#tap('vim-json')
