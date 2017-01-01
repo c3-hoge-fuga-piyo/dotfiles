@@ -57,6 +57,7 @@ if type git &>/dev/null; then
   alias gcm='gc -m'
   alias gcd='cd "$(g rev-parse --show-toplevel)"'
   alias gco='g checkout'
+  alias gcom='gco master'
   alias gcob='gco -b'
   alias gd='g diff --ignore-space-change'
   alias gdw='gd --word-diff-regex="\w+"'
@@ -64,10 +65,14 @@ if type git &>/dev/null; then
   alias gfp='gf --prune'
   alias gl='g log --graph --decorate --oneline'
   alias gm='g merge'
+  alias gmm='gm master'
   alias gp='g push'
   alias gpuo='gp -u origin'
   alias gs='g status --short --branch'
   alias grpo='g remote prune origin'
+  alias gwt='g worktree'
+  alias gwta='gwt add'
+  alias gwtp='gwt prune'
 
   # Autocompletion with aliases
   if type __git_complete &>/dev/null; then
@@ -77,6 +82,7 @@ if type git &>/dev/null; then
     type _git_commit &>/dev/null && __git_complete gc _git_commit
     if type _git_checkout &>/dev/null; then
       __git_complete gco _git_checkout
+      __git_complete gcom _git_checkout
       __git_complete gcob _git_checkout
     fi
     if type _git_diff &>/dev/null; then
@@ -90,7 +96,10 @@ if type git &>/dev/null; then
       __git_complete gfp _git_fetch
     fi
     type _git_log &>/dev/null && __git_complete gl _git_log
-    type _git_merge &>/dev/null && __git_complete gm _git_merge
+    if type _git_merge &>/dev/null; then
+      __git_complete gm _git_merge
+      __git_complete gmm _git_merge
+    fi
     if type _git_push &>/dev/null; then
       __git_complete gp _git_push
       __git_complete gpuo _git_push
@@ -98,6 +107,11 @@ if type git &>/dev/null; then
     type _git_status &>/dev/null && __git_complete gs _git_status
     if type _git_remote &>/dev/null; then
       __git_complete grpo _git_remote
+    fi
+    if type _git_worktree &>/dev/null; then
+      __git_complete gwt _git_worktree
+      __git_complete gwta _git_worktree
+      __git_complete gwtp _git_worktree
     fi
   fi
   #}}}
