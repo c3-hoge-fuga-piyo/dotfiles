@@ -17,6 +17,13 @@ if type go &>/dev/null; then
 fi
 #}}}
 
+# Java {{{
+if [[ -f /usr/libexec/java_home ]]; then
+  JAVA_HOME="$(/usr/libexec/java_home)"
+  export JAVA_HOME
+fi
+#}}}
+
 # ghq {{{
 if type ghq &>/dev/null; then
   export GHQ_ROOT="$XDG_DATA_HOME/ghq"
