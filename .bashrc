@@ -78,7 +78,7 @@ if type git &>/dev/null; then
   if type __git_complete &>/dev/null; then
     type __git_main &>/dev/null && __git_complete g __git_main
     type _git_add &>/dev/null && __git_complete ga _git_add
-    type _git_branch &>/dev/null && __git_complete gb _git_add
+    type _git_branch &>/dev/null && __git_complete gb _git_branch
     type _git_commit &>/dev/null && __git_complete gc _git_commit
     if type _git_checkout &>/dev/null; then
       __git_complete gco _git_checkout
