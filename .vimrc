@@ -467,6 +467,13 @@ augroup vimrc_filetype
       \ noexpandtab
   "}}}
 
+  " Markdown {{{
+  autocmd FileType markdown
+    \ setlocal
+      \ shiftwidth=4
+      \ tabstop=4
+  "}}}
+
   " C/C++ {{{
   autocmd FileType c,cpp
     \ setlocal
