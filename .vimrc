@@ -4,7 +4,7 @@ if 0 | endif
 " NOTE: In some cases, Vim is started in Vi compatibility mode.
 if &compatible
   " vint: -ProhibitSetNoCompatible
- set nocompatible
+  set nocompatible
   " vint: +ProhibitSetNoCompatible
 endif
 
