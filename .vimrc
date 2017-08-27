@@ -48,11 +48,13 @@ endif
 set runtimepath&
 execute 'set runtimepath^=' . s:env.dein.path
 
+let g:dein#install_process_timeout = 1800
+
 if dein#load_state(s:env.path.dein)
   call dein#begin(s:env.path.dein)
   call dein#add(s:env.dein.path)
   call dein#add('Shougo/vimproc.vim', {
-      \ 'timeout': 1200,
+      \ 'timeout': 1800,
       \ 'build': dein#util#_is_windows()
         \ ? 'tools\\update-dll-mingw'
         \ : 'make'})
