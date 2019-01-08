@@ -78,8 +78,6 @@ if dein#load_state(s:env.path.dein)
 
   call dein#add('vim-jp/vimdoc-ja')
 
-  call dein#add('wakatime/vim-wakatime')
-
   call dein#add('editorconfig/editorconfig-vim', {
     \ 'if': has('python')})
 
