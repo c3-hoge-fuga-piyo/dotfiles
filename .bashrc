@@ -143,7 +143,9 @@ function __eval_prompt_commands {
   done
 }
 
-export PROMPT_COMMAND='__eval_prompt_commands'
+if ! [[ $PROMPT_COMMAND =~ __eval_prompt_commands ]]; then
+  PROMPT_COMMAND="__eval_prompt_commands;$PROMPT_COMMAND"
+fi
 #}}}
 #}}}
 
