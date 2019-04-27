@@ -55,6 +55,7 @@ if type git &>/dev/null; then
   alias gb='g branch --verbose'
   alias gc='g commit --verbose'
   alias gcm='gc -m'
+  alias gcma='gc --allow-empty -m'
   alias gcd='cd "$(g rev-parse --show-toplevel)"'
   alias gco='g checkout'
   alias gcom='gco master'
