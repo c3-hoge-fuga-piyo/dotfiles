@@ -8,7 +8,5 @@
 	algorithm = histogram
 [color]
 	ui = auto
-[credential]
-	helper = cache --timeout=3600
 [alias]
 	conflicts = diff --name-only --diff-filter=U
