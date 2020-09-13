@@ -2,8 +2,12 @@
 	path = config.local
 [core]
 	editor = vim
+	quotepath = false
 [push]
 	default = simple
+[pull]
+	rebase = false
+	ff = only
 [diff]
 	algorithm = histogram
 [color]
