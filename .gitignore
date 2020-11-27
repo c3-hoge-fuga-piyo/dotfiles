@@ -13,3 +13,9 @@
 !/.config/peco/config.json
 !/.config/git/
 !/.config/git/config
+
+# zsh
+!/.zshenv
+!/.config/zsh/
+!/.config/zsh/.zprofile
+!/.config/zsh/.zshrc
