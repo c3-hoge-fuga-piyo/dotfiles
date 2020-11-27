@@ -1,6 +1,8 @@
+setopt NO_GLOBAL_RCS
 export LANG=ja_JP.UTF-8
 
-# PATH
+# $PATH
+typeset -U path
 if test -x /usr/libexec/path_helper; then
   eval `"$_" -s`
 else
@@ -21,5 +23,4 @@ if (( $+commands[ghq] )); then
 fi
 #}}}
 
-setopt NO_GLOBAL_RCS
 setopt COMBINING_CHARS

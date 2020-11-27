@@ -10,6 +10,8 @@ if (( $+coomands[brew] )); then
 fi
 
 autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+
 autoload -Uz colors && colors
 
 # History {{{
@@ -32,3 +34,8 @@ if (( $+commands[ghq] && $+commands[peco] )); then
     fi
   }
 fi
+
+local timestamp="${fg[cyan]}[%D{%Y-%m-%d}T%*]"
+local workspace="${fg[green]}%~"
+local prompt="${fg[green]}%#"
+PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
