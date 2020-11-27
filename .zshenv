@@ -16,7 +16,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # ghq {{{
-if type ghq > /dev/null; then
+if (( $+commands[ghq] )); then
   export GHQ_ROOT="$XDG_DATA_HOME/ghq"
 fi
 #}}}

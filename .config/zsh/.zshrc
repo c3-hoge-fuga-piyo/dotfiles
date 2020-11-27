@@ -1,6 +1,6 @@
 setopt PRINT_EIGHT_BIT
 
-if type brew &>/dev/null; then
+if (( $+coomands[brew] )); then
   # zsh-completions {{{
   local zsh_completions_dir="$(brew --prefix)/share/zsh-completions"
   if [ -d $zsh_completions_dir ]; then
@@ -22,7 +22,7 @@ setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
 #}}}
 
-if type ghq &>/dev/null && type peco &>/dev/null; then
+if (( $+commands[ghq] && $+commands[peco] )); then
   function ghqcd() {
     local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
     if [ -d "$selected_dir" ]; then
