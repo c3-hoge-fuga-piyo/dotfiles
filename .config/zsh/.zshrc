@@ -36,6 +36,6 @@ if (( $+commands[ghq] && $+commands[peco] )); then
 fi
 
 local timestamp="${fg[cyan]}[%D{%Y-%m-%d}T%*]"
-local workspace="${fg[green]}%~"
+local workspace="${fg[green]}%(5~,%-2~/.../%2~,%~)"
 local prompt="${fg[green]}%#"
 PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
