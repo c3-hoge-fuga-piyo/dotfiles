@@ -61,7 +61,7 @@ fi
 setopt PROMPT_SUBST
 
 local timestamp="${fg[cyan]}[%D{%Y-%m-%d}T%*]"
-local workspace="${fg[green]}%(5~,%-2~/.../%2~,%~)${reset_color}"'$($show_vcs_info)'
+local workspace="${fg[green]}%c${reset_color}"'$($show_vcs_info)'
 local prompt="${fg[green]}%#"
 PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
 #}}}
