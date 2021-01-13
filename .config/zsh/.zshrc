@@ -1,11 +1,17 @@
 setopt PRINT_EIGHT_BIT
 
 if (( $+commands[brew] )); then
+  local brew_prefix="$(brew --prefix)"
+
   # zsh-completions {{{
-  local zsh_completions_dir="$(brew --prefix)/share/zsh-completions"
+  local zsh_completions_dir="$brew_prefix/share/zsh-completions"
   if [ -d $zsh_completions_dir ]; then
     fpath=($zsh_completions_dir $fpath)
   fi
+  #}}}
+
+  # git-prompt {{{
+  test -f "$brew_prefix/etc/bash_completion.d/git-prompt.sh" && . "$_"
   #}}}
 fi
 
@@ -24,6 +30,22 @@ setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
 #}}}
 
+local show_vcs_info="true"
+
+# Git {{{
+if (( $+commands[git] )); then
+  if (( $+functions[__git_ps1] )); then
+    show_vcs_info="__git_ps1"
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWSTASHSTATE=true
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWUPSTREAM=auto
+    export GIT_PS1_DESCRIBE_STYLE=default
+    export GIT_PS1_SHOWCOLORHINTS=true
+  fi
+fi
+#}}}
+
 if (( $+commands[ghq] && $+commands[peco] )); then
   function ghqcd() {
     local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
@@ -35,7 +57,11 @@ if (( $+commands[ghq] && $+commands[peco] )); then
   }
 fi
 
+# Prompt {{{
+setopt PROMPT_SUBST
+
 local timestamp="${fg[cyan]}[%D{%Y-%m-%d}T%*]"
-local workspace="${fg[green]}%(5~,%-2~/.../%2~,%~)"
+local workspace="${fg[green]}%(5~,%-2~/.../%2~,%~)${reset_color}"'$($show_vcs_info)'
 local prompt="${fg[green]}%#"
 PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
+#}}}
