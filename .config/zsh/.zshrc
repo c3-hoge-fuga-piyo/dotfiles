@@ -1,6 +1,6 @@
 setopt PRINT_EIGHT_BIT
 
-if (( $+coomands[brew] )); then
+if (( $+commands[brew] )); then
   # zsh-completions {{{
   local zsh_completions_dir="$(brew --prefix)/share/zsh-completions"
   if [ -d $zsh_completions_dir ]; then
