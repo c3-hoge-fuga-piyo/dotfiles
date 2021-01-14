@@ -1,13 +1,18 @@
 setopt NO_GLOBAL_RCS
 export LANG=ja_JP.UTF-8
 
-# $PATH
+# $PATH {{{
 typeset -U path
 if test -x /usr/libexec/path_helper; then
   eval `"$_" -s`
 else
   ;
 fi
+
+# Homebrew on Linux
+test -x "$HOME/.linuxbrew/bin/brew" && eval $("$_" shellenv)
+test -x "/home/linuxbrew/.linuxbrew/bin/brew" && eval $("$_" shellenv)
+#}}}
 
 # XDG Base Directory Specification {{{
 export XDG_DATA_HOME="$HOME/.local/share"
