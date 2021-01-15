@@ -4,14 +4,19 @@ if (( $+commands[brew] )); then
   local brew_prefix="$(brew --prefix)"
 
   # zsh-completions {{{
-  local zsh_completions_dir="$brew_prefix/share/zsh-completions"
-  if [ -d $zsh_completions_dir ]; then
-    fpath=($zsh_completions_dir $fpath)
-  fi
+  test -d "$brew_prefix/share/zsh-completions" && fpath=("$_" $fpath)
   #}}}
 
   # git-prompt {{{
   test -f "$brew_prefix/etc/bash_completion.d/git-prompt.sh" && . "$_"
+  #}}}
+
+  # git/contrib {{{
+  local git_contrib_path="$brew_prefix/share/git-core/contrib"
+  if [ -d $git_contrib_path ]; then
+    # diff-highlight
+    test -d "$git_contrib_path/diff-highlight" && path=("$_" $path)
+  fi
   #}}}
 fi
 
