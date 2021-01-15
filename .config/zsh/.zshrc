@@ -72,4 +72,7 @@ local prompt="${fg[green]}%#"
 PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
 #}}}
 
+# Aliases
+test -f "$ZDOTDIR/.zshrc.aliases" && . "$_"
+
 test -f "$ZDOTDIR/.zshrc.local" && . "$_"

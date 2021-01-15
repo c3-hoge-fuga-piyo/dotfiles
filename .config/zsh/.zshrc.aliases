@@ -1,0 +1,59 @@
+if (( $+commands[git] )); then
+  alias g='git'
+
+  # git-switch
+  alias gsw='g switch'
+  alias gswc='gsw -c'
+
+  # git-restore
+  alias gr='g restore'
+
+  # git-add
+  alias ga='g add'
+  alias gau='ga -u'
+  alias gaf='ga -f'
+
+  # git-branch
+  alias gb='g branch --verbose'
+
+  # git-commit
+  alias gc='g commit'
+  alias gcm='gc -m'
+  alias gca='gc --allow-empty'
+  alias gcam='gca -m'
+
+  # git-push
+  alias gp='g push'
+  alias gpuo='gp -u origin'
+
+  # git-diff
+  alias gd='g diff --ignore-space-change'
+
+  # git-status
+  alias gs='g status --short --branch'
+
+  # git-fetch
+  alias gf='g fetch'
+  alias gfp='gf --prune'
+
+  # git-merge
+  alias gm='g merge'
+
+  # git-reset
+  alias gres='g reset'
+
+  # git-clean
+  alias gcl='g clean'
+
+  # git-worktree
+  alias gwt='g worktree'
+  alias gwta='gwt add'
+  alias gwtp='gwt prune'
+
+  # Utilities
+  alias gcd='cd "$(g rev-parse --show-toplevel)"'
+fi
+
+if (( $+commands[brew] )); then
+  alias b='brew'
+fi

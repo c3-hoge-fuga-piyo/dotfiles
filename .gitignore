@@ -20,3 +20,4 @@
 !/.config/zsh/
 !/.config/zsh/.zprofile
 !/.config/zsh/.zshrc
+!/.config/zsh/.zshrc.aliases
