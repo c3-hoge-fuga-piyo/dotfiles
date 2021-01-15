@@ -65,3 +65,5 @@ local workspace="${fg[green]}%c${reset_color}"'$($show_vcs_info)'
 local prompt="${fg[green]}%#"
 PROMPT="$timestamp $workspace"$'\n'"$prompt ${reset_color}"
 #}}}
+
+test -f "$ZDOTDIR/.zshrc.local" && . "$_"

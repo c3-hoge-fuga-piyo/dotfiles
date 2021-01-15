@@ -7,11 +7,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Zsh {{{
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-setopt COMBINING_CHARS
-
 export LANG=ja_JP.UTF-8
 
 setopt NO_GLOBAL_RCS
+setopt COMBINING_CHARS
 #}}}
 
 # $PATH {{{
@@ -32,3 +31,5 @@ if (( $+commands[ghq] )); then
   export GHQ_ROOT="$XDG_DATA_HOME/ghq"
 fi
 #}}}
+
+test -f "$ZDOTDIR/.zshenv.local" && . "$_"

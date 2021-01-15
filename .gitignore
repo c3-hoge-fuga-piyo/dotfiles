@@ -9,11 +9,12 @@
 !/.vimrc
 
 !/.config/
+# peco
 !/.config/peco/
 !/.config/peco/config.json
+# git
 !/.config/git/
 !/.config/git/config
-
 # zsh
 !/.zshenv
 !/.config/zsh/
