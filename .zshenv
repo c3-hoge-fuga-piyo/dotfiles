@@ -1,6 +1,18 @@
-setopt NO_GLOBAL_RCS
+# XDG Base Directory Specification {{{
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+#}}}
+
+# Zsh {{{
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 setopt COMBINING_CHARS
+
 export LANG=ja_JP.UTF-8
+
+setopt NO_GLOBAL_RCS
+#}}}
 
 # $PATH {{{
 typeset -U path
@@ -14,14 +26,6 @@ fi
 test -x "$HOME/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 test -x "/home/linuxbrew/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 #}}}
-
-# XDG Base Directory Specification {{{
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-#}}}
-
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # ghq {{{
 if (( $+commands[ghq] )); then
