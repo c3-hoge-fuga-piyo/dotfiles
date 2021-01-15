@@ -20,10 +20,21 @@ if test -x /usr/libexec/path_helper; then
 else
   ;
 fi
+#}}}
 
+# Homebrew {{{
 # Homebrew on Linux
 test -x "$HOME/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 test -x "/home/linuxbrew/.linuxbrew/bin/brew" && eval $("$_" shellenv)
+
+if (( $+commands[brew] )); then
+  # https://docs.brew.sh/Manpage#environment {{{
+  # HOMEBREW_GITHUB_API_TOKEN
+  test -f "$HOME/.homebrew_github_api_token" && . "$_"
+
+  export HOMEBREW_NO_ANALYTICS=true
+  # }}}
+fi
 #}}}
 
 # ghq {{{
