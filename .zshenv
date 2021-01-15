@@ -1,4 +1,5 @@
 setopt NO_GLOBAL_RCS
+setopt COMBINING_CHARS
 export LANG=ja_JP.UTF-8
 
 # $PATH {{{
@@ -27,5 +28,3 @@ if (( $+commands[ghq] )); then
   export GHQ_ROOT="$XDG_DATA_HOME/ghq"
 fi
 #}}}
-
-setopt COMBINING_CHARS
