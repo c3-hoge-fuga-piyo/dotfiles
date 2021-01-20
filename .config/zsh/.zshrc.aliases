@@ -32,6 +32,9 @@ if (( $+commands[git] )); then
   # git-status
   alias gs='g status --short --branch'
 
+  # git-log
+  alias gl='g log --graph --decorate --oneline'
+
   # git-fetch
   alias gf='g fetch'
   alias gfp='gf --prune'
