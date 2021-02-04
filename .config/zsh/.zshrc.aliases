@@ -21,6 +21,8 @@ if (( $+commands[git] )); then
   alias gcm='gc -m'
   alias gca='gc --allow-empty'
   alias gcam='gca -m'
+  # first commit
+  alias gcfirst='gcam ":hatching_chick:"'
 
   # git-push
   alias gp='g push'
