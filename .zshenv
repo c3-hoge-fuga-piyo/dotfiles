@@ -27,8 +27,10 @@ fi
 test -x "$HOME/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 test -x "/home/linuxbrew/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 
-# Homebrew on Apple M1
-test -x "/opt/homebrew/bin/brew" && eval $("$_" shellenv)
+if [ "$(uname)" = 'Darwin' ] && [ "$(uname -m)" = 'arm64' ]; then
+  # Homebrew on Apple M1
+  test -x "/opt/homebrew/bin/brew" && eval $("$_" shellenv)
+fi
 
 if (( $+commands[brew] )); then
   # https://docs.brew.sh/Manpage#environment {{{
