@@ -26,6 +26,7 @@ fi
 # Homebrew on Linux
 test -x "$HOME/.linuxbrew/bin/brew" && eval $("$_" shellenv)
 test -x "/home/linuxbrew/.linuxbrew/bin/brew" && eval $("$_" shellenv)
+test -x "/opt/homebrew/bin/brew" && eval $("$_" shellenv)
 
 if [ "$(uname)" = 'Darwin' ] && [ "$(uname -m)" = 'arm64' ]; then
   # Homebrew on Apple M1

@@ -20,3 +20,8 @@
 	diff = diff-highlight | less
 [alias]
 	conflicts = diff --name-only --diff-filter=U
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -61,4 +61,6 @@ fi
 
 if (( $+commands[brew] )); then
   alias b='brew'
+  alias buo='b update && b outdated'
+  alias bup='b upgrade'
 fi
