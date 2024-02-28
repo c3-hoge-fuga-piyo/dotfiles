@@ -1,7 +1,5 @@
 [init]
 	defaultBranch = main
-[include]
-	path = config.local
 [core]
 	editor = vim
 	quotepath = false
@@ -25,3 +23,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[include]
+	path = config.local
